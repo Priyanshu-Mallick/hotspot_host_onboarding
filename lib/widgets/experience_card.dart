@@ -8,22 +8,19 @@ class ExperienceCard extends StatelessWidget {
   final Experience experience;
   final bool isSelected;
   final VoidCallback onTap;
-  final int index; // Add an index to alternate the tilt
+  final int index;
 
   const ExperienceCard({
     Key? key,
     required this.experience,
     required this.isSelected,
     required this.onTap,
-    required this.index, // Accept the index from the parent widget
+    required this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Calculate the rotation angle based on the index (alternates between left and right)
-    double rotationAngle = (index % 2 == 0)
-        ? -0.05
-        : 0.05; // -0.05 radians to the left, 0.05 radians to the right
+    double rotationAngle = (index % 2 == 0) ? -0.05 : 0.05;
 
     return GestureDetector(
       onTap: onTap,
@@ -38,12 +35,9 @@ class ExperienceCard extends StatelessWidget {
               child: Transform.rotate(
                 angle: rotationAngle, // Apply the tilt based on the index
                 child: Image.network(
-                  experience
-                      .imageUrl, // Assuming the experience model has an imageUrl
+                  experience.imageUrl,
                   fit: BoxFit.cover,
-                  color: isSelected
-                      ? null
-                      : Colors.grey, // Greyscale effect for unselected cards
+                  color: isSelected ? null : Colors.grey,
                   colorBlendMode: isSelected ? null : BlendMode.saturation,
                 ),
               ),

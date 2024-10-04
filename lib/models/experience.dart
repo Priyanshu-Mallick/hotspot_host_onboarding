@@ -1,5 +1,3 @@
-// lib/models/experience.dart
-
 class Experience {
   final int id;
   final String name;

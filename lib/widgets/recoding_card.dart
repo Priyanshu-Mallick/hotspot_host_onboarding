@@ -196,13 +196,13 @@ class RecordingStatus extends ConsumerWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 2.0),
           child: Container(
-            width: 3, // The width of each bar
-            height: height, // Dynamic height for the wave effect
+            width: 3,
+            height: height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.white.withOpacity(0.8), // Start color
-                  Colors.white.withOpacity(0.5), // End color
+                  Colors.white.withOpacity(0.8),
+                  Colors.white.withOpacity(0.5),
                 ],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,

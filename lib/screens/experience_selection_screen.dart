@@ -28,10 +28,8 @@ class _ExperienceSelectionScreenState
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    // Listen for focus events on the text field
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
-        // Scroll to the bottom when the keyboard appears
         WidgetsBinding.instance.addPostFrameCallback((_) {
           _scrollController.animateTo(
             _scrollController.position.maxScrollExtent,
@@ -51,7 +49,6 @@ class _ExperienceSelectionScreenState
     super.dispose();
   }
 
-  // Override to detect keyboard visibility changes
   @override
   void didChangeMetrics() {
     super.didChangeMetrics();
@@ -62,7 +59,6 @@ class _ExperienceSelectionScreenState
         _isKeyboardVisible = newValue;
       });
       if (!_isKeyboardVisible) {
-        // Unfocus the text field when the keyboard disappears
         FocusScope.of(context).unfocus();
       }
     }
@@ -74,7 +70,7 @@ class _ExperienceSelectionScreenState
     final selectedIds = ref.watch(selectedExperienceIdsProvider);
 
     return Scaffold(
-      resizeToAvoidBottomInset: false, // Prevent automatic resizing
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: AppColors.effectBgBlur80,
         leading: IconButton(
@@ -91,7 +87,7 @@ class _ExperienceSelectionScreenState
           padding: const EdgeInsets.only(right: 10),
           child: Container(
             height: 20,
-            child: WavyProgressBar(progress: 0.5), // Example progress (50%)
+            child: WavyProgressBar(progress: 0.5),
           ),
         ),
       ),
@@ -100,7 +96,7 @@ class _ExperienceSelectionScreenState
           // Add the wave background as the bottom-most layer
           CustomPaint(
             size: Size(double.infinity, double.infinity),
-            painter: WaveBackgroundPainter(), // Use the wave background painter
+            painter: WaveBackgroundPainter(),
           ),
           SingleChildScrollView(
             controller: _scrollController,
@@ -110,7 +106,6 @@ class _ExperienceSelectionScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Adjust top padding based on keyboard visibility
                 SizedBox(height: _isKeyboardVisible ? 16 : 270),
                 Container(
                   decoration: BoxDecoration(
@@ -206,14 +201,13 @@ class _ExperienceSelectionScreenState
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
                               color: _isKeyboardVisible
-                                  ? AppColors
-                                      .primaryAccent // Change border color
+                                  ? AppColors.primaryAccent
                                   : AppColors.border1,
                               width: 1.0,
                             ),
                           ),
                           child: TextField(
-                            focusNode: _focusNode, // Attach FocusNode
+                            focusNode: _focusNode,
                             maxLines: null,
                             style: AppTextStyles.bodyText
                                 .copyWith(color: AppColors.text2),
@@ -250,38 +244,30 @@ class _ExperienceSelectionScreenState
                                     ? [
                                         Colors.white.withOpacity(0.2),
                                         Colors.black.withOpacity(0.1)
-                                      ] // Higher opacity for active state
+                                      ]
                                     : [
                                         Colors.white.withOpacity(0),
                                         Colors.black.withOpacity(0)
-                                      ], // Lower opacity for inactive state
-                                radius:
-                                    5, // Adjust this for how spread out you want the gradient
-                                center: Alignment
-                                    .center, // Centered circular gradient
+                                      ],
+                                radius: 5,
+                                center: Alignment.center,
                               ),
                             ),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: Colors
-                                    .transparent, // Transparent background for both active and inactive states
+                                primary: Colors.transparent,
                                 onPrimary: AppColors.text1, // Text color
-                                minimumSize: Size(double.infinity,
-                                    56), // Full-width and 56 height
+                                minimumSize: Size(double.infinity, 56),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      12), // Keep border radius as it is
+                                  borderRadius: BorderRadius.circular(12),
                                   side: BorderSide(
                                     color: selectedIds.isNotEmpty
-                                        ? AppColors
-                                            .border3 // Active state border color
-                                        : AppColors
-                                            .border1, // Inactive state border color
-                                    width:
-                                        1.5, // Border width remains unchanged
+                                        ? AppColors.border3
+                                        : AppColors.border1,
+                                    width: 1.5,
                                   ),
                                 ),
-                                shadowColor: Colors.transparent, // No shadow
+                                shadowColor: Colors.transparent,
                               ),
                               onPressed: selectedIds.isNotEmpty
                                   ? () {
@@ -306,9 +292,8 @@ class _ExperienceSelectionScreenState
                                               child: child,
                                             );
                                           },
-                                          transitionDuration: Duration(
-                                              milliseconds:
-                                                  300), // Adjust the duration as needed
+                                          transitionDuration:
+                                              Duration(milliseconds: 300),
                                         ),
                                       );
                                     }
@@ -319,24 +304,17 @@ class _ExperienceSelectionScreenState
                                   Text(
                                     'Next',
                                     style: AppTextStyles.bodyText.copyWith(
-                                      color: Colors.white.withOpacity(selectedIds
-                                              .isNotEmpty
-                                          ? 0.9
-                                          : 0.4), // Text color varies by state
+                                      color: Colors.white.withOpacity(
+                                          selectedIds.isNotEmpty ? 0.9 : 0.4),
                                     ),
                                   ),
-                                  SizedBox(
-                                      width: 8), // Space between text and image
+                                  SizedBox(width: 8),
                                   Image.asset(
-                                    'assets/forward.png', // Use asset image instead of icon
-                                    color: Colors.white.withOpacity(selectedIds
-                                            .isNotEmpty
-                                        ? 0.9
-                                        : 0.4), // Image color varies by state
-                                    height:
-                                        20, // Set the desired height for the image
-                                    width:
-                                        20, // Set the desired width for the image
+                                    'assets/forward.png',
+                                    color: Colors.white.withOpacity(
+                                        selectedIds.isNotEmpty ? 0.9 : 0.4),
+                                    height: 20,
+                                    width: 20,
                                   ),
                                 ],
                               ),
