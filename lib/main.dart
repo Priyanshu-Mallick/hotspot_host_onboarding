@@ -27,9 +27,9 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
         textTheme: TextTheme(
-          headline1: AppTextStyles.heading1,
-          headline2: AppTextStyles.heading2,
-          bodyText1: AppTextStyles.bodyText,
+          displayLarge: AppTextStyles.heading1,
+          displayMedium: AppTextStyles.heading2,
+          bodyLarge: AppTextStyles.bodyText,
         ),
       ),
       home: ExperienceSelectionScreen(),
