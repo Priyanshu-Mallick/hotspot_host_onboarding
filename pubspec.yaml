@@ -43,6 +43,8 @@ dependencies:
   camera:
   video_player: ^2.4.5
   video_thumbnail:
+  cached_network_image:
+  retry:
 
 dev_dependencies:
   flutter_test:
